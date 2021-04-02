@@ -19,12 +19,17 @@ Definition
         // Associer le profil utilisateur
         author: {
             type: Schema.Types.ObjectId,
-            ref: 'user'  
+            ref: 'user'
         },
 
         comments: [{
             type: Schema.Types.ObjectId,
-            ref: 'comment'  
+            ref: 'comment'
+        }],
+
+        likes: [{
+            type: Schema.Types.ObjectId,
+            ref: 'like'
         }],
 
         // Définir une valeur par défaut
@@ -34,7 +39,7 @@ Definition
     })
 //
 
-/* 
+/*
 Export
 */
     module.exports = mongoose.model('post', MySchema)

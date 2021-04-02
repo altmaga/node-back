@@ -1,10 +1,10 @@
-/* 
+/*
 Imports
 */
     const Models = require('../models/index');
 //
 
-/*  
+/*
 CRUD methods
 */
     const createOne = req => {
@@ -14,12 +14,14 @@ CRUD methods
             .catch( err => reject(err) )
         })
     }
- 
+
     const readAll = () => {
         return new Promise( (resolve, reject) => {
             // Mongoose population to get associated data
             Models.post.find()
             .populate('author', [ '-password' ])
+            .populate('likes')
+            .populate('comments')
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -32,6 +34,8 @@ CRUD methods
             // Mongoose population to get associated data
             Models.post.findById( id )
             .populate('author', [ '-password' ])
+            .populate('likes')
+            .populate('comments')
             .exec( (err, data) => {
                 if( err ){ return reject(err) }
                 else{ return resolve(data) }
@@ -50,8 +54,9 @@ CRUD methods
                 post.dateModified = new Date();
 
                 // TODO: Check author
-                /* if( post.author !== req.user._id ){ return reject('User not authorized') }
-                else{ } */
+                // if( post.author !== req.user._id ){
+                //     return reject('User not authorized')
+                // }
 
                 // Save post changes
                 post.save()
@@ -64,17 +69,14 @@ CRUD methods
 
     const deleteOne = req => {
         return new Promise( (resolve, reject) => {
-             // Delete object
-             Models.post.findByIdAndDelete( req.params.id, (err, deleted) => {
-                if( err ){ return reject(err) }
-                else{ return resolve(deleted) };
-            })
-            
-            // Get post by ID
-            /* Models.post.findById( req.params.id )
+            //  Delete object
+            Models.post.findById( req.params.id )
             .then( post => {
                 // TODO: Check author
-                if( post.author !== req.user._id ){ return reject('User not authorized') }
+                // check user
+                if (String(post.author) !== String(req.user._id)) {
+                    reject('User not authorized')
+                }
                 else{
                     // Delete object
                     Models.post.findByIdAndDelete( req.params.id, (err, deleted) => {
@@ -83,12 +85,12 @@ CRUD methods
                     })
                 }
             })
-            .catch( err => reject(err) ); */
+            .catch( err => reject(err) );
         });
     }
 //
 
-/* 
+/*
 Export controller methods
 */
     module.exports = {

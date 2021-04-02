@@ -19,7 +19,7 @@ Routes definition
     class ApiRouter {
         // Include Passport authentication service from server file in the RouterClass
         constructor( { passport } ){
-            this.router = express.Router(); 
+            this.router = express.Router();
             this.passport = passport
         }
 
@@ -27,7 +27,7 @@ Routes definition
             // [CRUD] define route to create object, protected by Passport MiddleWare
             this.router.post('/:endpoint', this.passport.authenticate('jwt', { session: false }), (req, res) => {
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return sendApiErrorResponse(req, res, null, 'No data provided in the reqest body')
                 }
                 else{
@@ -47,7 +47,7 @@ Routes definition
                     }
                 }
             })
- 
+
             // [CRUD] define route to read all objects
             this.router.get('/:endpoint', (req, res) => {
                 // Use the controller to get data
@@ -55,7 +55,7 @@ Routes definition
                 .then( apiResponse => sendApiSuccessResponse(req, res, apiResponse, 'Request succeed') )
                 .catch( apiError => sendApiErrorResponse(res, res, apiError, 'Request failed') );
             })
- 
+
             // [CRUD] define route to read one object
             this.router.get('/:endpoint/:id', (req, res) => {
                 // Use the controller to get data
@@ -67,7 +67,7 @@ Routes definition
             // [CRUD] define route to update one object, protected by Passport MiddleWare
             this.router.put('/:endpoint/:id', this.passport.authenticate('jwt', { session: false }), (req, res) => {
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return sendApiErrorResponse(req, res, null, 'No data provided in the reqest body')
                 }
                 else{

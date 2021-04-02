@@ -17,8 +17,8 @@ Routes definition
     class BackendRouter {
         constructor( { passport } ){
             this.passport = passport
-            this.router = express.Router(); 
-        } 
+            this.router = express.Router();
+        }
 
         routes(){
             // [BACKOFFICE] Render index vue
@@ -35,13 +35,13 @@ Routes definition
 
             // [BACKOFFICE] get data from client to log user and render index vue
             this.router.post('/login', (req, res) => {
-                
+
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return renderErrorVue('index', req, res, 'No data provided',  'Request failed')
                 }
                 else{
-                    
+
                     // Check body data
                     const { ok, extra, miss } = checkFields( Mandatory.login, req.body );
 
@@ -58,7 +58,7 @@ Routes definition
             // [BACKOFFICE] get data from client to create object, protected by Passport MiddleWare
             this.router.post('/:endpoint', this.passport.authenticate('jwt', { session: false, failureRedirect: '/' }), (req, res) => {
                 // Check body data
-                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){ 
+                if( typeof req.body === 'undefined' || req.body === null || Object.keys(req.body).length === 0 ){
                     return renderErrorVue('index', req, res, 'No data provided',  'Request failed')
                 }
                 else{
