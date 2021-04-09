@@ -52,19 +52,6 @@ const readOne = id => {
     })
 }
 
-const readAllFromPost = postId => {
-    return new Promise((resolve, reject) => {
-        // Mongoose population to get associated data
-        Models.comment.find({ post: postId })
-            .populate('comment', ['content', 'author'])
-            .populate('author', ['-password'])
-            .exec((err, data) => {
-                if (err) { return reject(err) }
-                else { return resolve(data) }
-            })
-    })
-}
-
 const updateOne = req => {
     return new Promise((resolve, reject) => {
         // Get comment by ID
@@ -106,6 +93,19 @@ const deleteOne = req => {
             })
             .catch(err => reject(err));
     });
+}
+
+const readAllFromPost = postId => {
+    return new Promise((resolve, reject) => {
+        // Mongoose population to get associated data
+        Models.comment.find({ post: postId })
+            .populate('comment', ['content', 'author'])
+            .populate('author', ['-password'])
+            .exec((err, data) => {
+                if (err) { return reject(err) }
+                else { return resolve(data) }
+            })
+    })
 }
 //
 

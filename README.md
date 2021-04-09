@@ -1,4 +1,4 @@
-# [03/2021] Boilerplate : NodeJS/ExpressJS API/backoffice
+# Boilerplate : NodeJS/ExpressJS API/backoffice
 
 Ce répertoire à été réalisé dans le cadre d'une formation aux techniques spécifiques à la mise en place d'une API RestFull en NodeJS. Ce projet est connecté à une base de données MongoDB, vous devez vous assurer qu'une instance soit accessible dans votre environnement de travail.
 
@@ -47,7 +47,7 @@ ALLOWED_ORIGINS=*
 
 En informatique un "Boilerplate" est un code de départ qui permet d'initier un projet qui contient des fonctionnalités basiques. Dans le cadre de notre projet d'API, ce répertoire intègre différentes fonctionnalités de gestion de l'information et de des routes qui permettent de mettre en place rapidement une API pour pouvoir ce concentrer sur des fonctionnalités spécifiques.
 
-**Liste de fonctionnalités développées**
+**Liste de fonctionnalités**
 
 - [x] Gestion des CORS
 - [x] Gestion des informations en MongoDB
@@ -57,11 +57,16 @@ En informatique un "Boilerplate" est un code de départ qui permet d'initier un 
 - [x] Vérification des requêtes
 - [x] Protection des routes avec PassportJS
 - [x] Gestion d'un backoffice
-
-
-**Liste de fonctionnalités a développer**
-
 - [] Protéger les information utilisateur-trice avec CryptoJS
+- [x] Créer un model comment et un model like
+- [x] Créer les contrôleurs nécessaires à la gestion des deux modèles [CRUD]
+- [] Joindre les informations des comment et des like aux requêtes pour les user
+- [x] Joindre les informations des comment et des like aux requêtes pour les post
+- [x] Pouvoir ajouter/supprimer un commentaire à un article
+- [x] Pouvoir like/unlike un article ou un commentaire
+- [] Voir la liste des commentaires d’un article
+- [] Voir le nombre de likes d’un article
+- [] Visualiser tous les artciles avec tous les commantaires et les likes
 
 ## Postman
 - https://www.getpostman.com/collections/729f3dd11e291fd321c0

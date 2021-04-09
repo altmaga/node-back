@@ -65,46 +65,6 @@ const readAll = () => {
     })
 }
 
-const readAllFromPost = id => {
-    return new Promise((resolve, reject) => {
-        Models.like.find({ post: id })
-            .exec((err, data) => {
-                if (err) { return reject(err) }
-                else { return resolve(data) }
-            })
-    })
-}
-
-const readOneFromPost = (req) => {
-    return new Promise((resolve, reject) => {
-        Models.like.find({ post: req.body.post, author: req.body.author })
-            .exec((err, data) => {
-                if (err) { return reject(err) }
-                else { return resolve(data) }
-            })
-    })
-}
-
-const readAllFromComment = id => {
-    return new Promise((resolve, reject) => {
-        Models.like.find({ comment: id })
-            .exec((err, data) => {
-                if (err) { return reject(err) }
-                else { return resolve(data) }
-            })
-    })
-}
-
-const readOneFromComment = (req) => {
-    return new Promise((resolve, reject) => {
-        Models.like.find({ comment: req.body.comment, author: req.body.author })
-            .exec((err, data) => {
-                if (err) { return reject(err) }
-                else { return resolve(data) }
-            })
-    })
-}
-
 const readOne = id => {
     return new Promise((resolve, reject) => {
         // Mongoose population to get associated data
@@ -157,6 +117,47 @@ const deleteOne = req => {
         .catch(err => reject(err));
     })
 }
+
+const readAllFromPost = id => {
+    console.log(id);
+    return new Promise((resolve, reject) => {
+        Models.like.find({ post: id })
+            .exec((err, data) => {
+                if (err) { return reject(err) }
+                else { return resolve(data) }
+            })
+    })
+}
+
+const readOneFromPost = (req) => {
+    return new Promise((resolve, reject) => {
+        Models.like.find({ post: req.body.post, author: req.body.author })
+            .exec((err, data) => {
+                if (err) { return reject(err) }
+                else { return resolve(data) }
+            })
+    })
+}
+
+const readAllFromComment = id => {
+    return new Promise((resolve, reject) => {
+        Models.like.find({ comment: id })
+            .exec((err, data) => {
+                if (err) { return reject(err) }
+                else { return resolve(data) }
+            })
+    })
+}
+
+const readOneFromComment = (req) => {
+    return new Promise((resolve, reject) => {
+        Models.like.find({ comment: req.body.comment, author: req.body.author })
+            .exec((err, data) => {
+                if (err) { return reject(err) }
+                else { return resolve(data) }
+            })
+    })
+}
 //
 
 /*
@@ -165,12 +166,12 @@ Export controller methods
 module.exports = {
     readAll,
     readOne,
+    createOne,
+    updateOne,
+    deleteOne,
     // readAllFromPost,
     // readOneFromPost,
     // readAllFromComment,
     // readOneFromComment,
-    createOne,
-    updateOne,
-    deleteOne
 }
 //
